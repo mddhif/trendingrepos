@@ -9,5 +9,6 @@ The following attributes are going to be calculated for every language included 
 
 Our API can be accessed via http://localhost:8080/trendingrepos and the response would be as follows :
 
+![alt text](https://github.com/medtamu/trendingrepos/blob/main/typescript.png?raw=true)
 
 # Trending Repos
