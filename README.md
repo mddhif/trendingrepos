@@ -9,9 +9,14 @@ The following attributes are going to be calculated for every language included 
 
 Our API can be accessed via http://localhost:8080/trendingrepos and the response would be similar to the following :
 
+(Cropped image from the response - Typescript language) :
+
 ![alt text](https://github.com/medtamu/trendingrepos/blob/main/typescript.png?raw=true)
 
 
+
+
+(Cropped image from the response - Java language) :
 
 ![alt text](https://github.com/medtamu/trendingrepos/blob/main/java.png?raw=true)
 
