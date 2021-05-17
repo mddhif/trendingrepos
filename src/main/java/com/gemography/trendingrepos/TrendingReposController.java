@@ -13,6 +13,16 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.text.DateFormat;
 
+import com.google.gson.Gson;
+import org.json.simple.JSONObject;
+
+import java.util.Map;
+import java.util.List;
+import java.util.stream.Collectors;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.type.TypeReference;
+
+
 @RestController
 public class TrendingReposController {
 	
@@ -35,8 +45,27 @@ public class TrendingReposController {
 	  String repos = restTemplate.getForObject(url, String.class);
 
       
-      //send json response to client
-      return repos ;
+      //extract items from reponse using Gson library
+      Gson gson = new Gson();
+      JSONObject jsonObject = gson.fromJson(repos, JSONObject.class);
+      String items = gson.toJson(jsonObject.get("items"));
+
+      
+      //map items into a list of resources to model the objects in the items array
+      ObjectMapper mapper = new ObjectMapper();
+      
+      List<ReposResource> list = mapper.readValue(items, new TypeReference<List<ReposResource>>(){});
+ 
+      
+      //iterate through our list of ReposResources and group them by language     
+      Map<String, List<ReposResource>> groupedMap = list.stream().filter(x -> x.getLanguage() != null)
+
+      .collect(Collectors.groupingBy(ReposResource::getLanguage));
+      
+
+
+      //send json response to client, now as a grouped Map
+      return groupedMap ;
       
 
     }
