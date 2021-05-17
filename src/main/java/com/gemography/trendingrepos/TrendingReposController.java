@@ -28,7 +28,7 @@ public class TrendingReposController {
 
 
   //method to handle get requests and return final result 
-  @GetMapping("/repos")
+  @GetMapping("/trendingrepos")
 	public Object repos() throws Exception {
     
       //retrieve repos JSON string from Github
