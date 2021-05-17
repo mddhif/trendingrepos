@@ -18,6 +18,7 @@ import org.json.simple.JSONObject;
 
 import java.util.Map;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -62,10 +63,25 @@ public class TrendingReposController {
 
       .collect(Collectors.groupingBy(ReposResource::getLanguage));
       
+      List<TrendingRepos> trendingReposList = new ArrayList<TrendingRepos>();
 
 
-      //send json response to client, now as a grouped Map
-      return groupedMap ;
+
+
+      //for each key/value pair, pass language, number of repos in that language, and 
+      //a list of repos in the same language as parameters to TrendingRepos constructor, and add
+      //them to trendingReposList
+
+      groupedMap.forEach((x,y) -> {
+
+         
+        trendingReposList.add(new TrendingRepos(x, y.size(), y));
+
+      });
+
+
+      //send json response to client, now as a List grouped by language
+      return trendingReposList ;
       
 
     }
