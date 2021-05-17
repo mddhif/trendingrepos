@@ -7,4 +7,7 @@ The following attributes are going to be calculated for every language included 
     - The number of trending repos using that language
     - The list of trending repos using the same language
 
+Our API can be accessed via http://localhost:8080/trendingrepos and the response would be as follows :
+
+
 # Trending Repos
